@@ -8,7 +8,7 @@ func AccountsTableUp(db *sql.DB) error {
 		CreatedAt BIG INTEGER NOT NULL,
 		AccountNumber TEXT UNIQUE NOT NULL,
 		Balance BIG INTEGER NOT NULL,
-		UpdatedAt BIG INTEGER NOT NULL,
+		UpdatedAt BIG INTEGER NOT NULL
 	);`
 	stmt, err := db.Prepare(query)
 	if err != nil {
