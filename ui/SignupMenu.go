@@ -65,5 +65,5 @@ func SignupMenu(r repo.IRepository) (int, error) {
 		return OPT_EXIT, err
 	}
 	fmt.Printf("%+v\n", ret)
-	return OPT_EXIT, nil
+	return OPT_PROFILE_MENU, nil
 }
