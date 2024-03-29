@@ -22,6 +22,11 @@ func main() {
 			if err != nil {
 				log.Fatal(err.Error())
 			}
+		case ui.OPT_PROFILE_MENU:
+			opt, err = ui.ProfileMenu()
+			if err != nil {
+				log.Fatal(err.Error())
+			}
 		default:
 			log.Fatal("option not recognised")
 		}
