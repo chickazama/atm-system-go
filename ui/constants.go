@@ -6,11 +6,12 @@ import (
 )
 
 const (
-	OPT_EXIT             = 0
-	OPT_MAIN_MENU        = 1
-	OPT_SIGNUP_MENU      = 2
-	OPT_LOGIN_MENU       = 3
-	newlineDelim    byte = '\n'
+	OPT_EXIT              = 0
+	OPT_MAIN_MENU         = 1
+	OPT_SIGNUP_MENU       = 2
+	OPT_LOGIN_MENU        = 3
+	OPT_PROFILE_MENU      = 4
+	newlineDelim     byte = '\n'
 )
 
 var (
