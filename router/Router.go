@@ -9,7 +9,7 @@ type Router struct {
 	Handlers map[*regexp.Regexp]http.Handler
 }
 
-func NewRouter() *Router {
+func New() *Router {
 	return &Router{Handlers: make(map[*regexp.Regexp]http.Handler)}
 }
 
