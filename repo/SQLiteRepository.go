@@ -29,6 +29,10 @@ func NewSQLiteRepository() *SQLiteRepository {
 	if err != nil {
 		log.Fatal(err.Error())
 	}
+	err = ret.UsersTableUp()
+	if err != nil {
+		log.Fatal(err.Error())
+	}
 	return ret
 }
 
