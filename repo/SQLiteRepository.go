@@ -4,6 +4,8 @@ import (
 	"database/sql"
 	"log"
 	"matthewhope/atm-system-go/sqlite"
+
+	_ "github.com/mattn/go-sqlite3"
 )
 
 const (
