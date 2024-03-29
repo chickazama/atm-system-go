@@ -3,6 +3,7 @@ package repo
 import (
 	"database/sql"
 	"log"
+	"matthewhope/atm-system-go/models"
 	"matthewhope/atm-system-go/sqlite"
 
 	_ "github.com/mattn/go-sqlite3"
@@ -46,4 +47,8 @@ func (r *SQLiteRepository) UsersTableUp() error {
 
 func (r *SQLiteRepository) AccountsTableUp() error {
 	return sqlite.AccountsTableUp(r.businessDb)
+}
+
+func (r *SQLiteRepository) CreateUser(u models.User) (models.User, error) {
+	return sqlite.CreateUser(r.identityDb, u)
 }
