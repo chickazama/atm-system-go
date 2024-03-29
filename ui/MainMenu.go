@@ -1,5 +1,5 @@
 package ui
 
 func MainMenu() (int, error) {
-	return 0, printTitle()
+	return OPT_EXIT, printTitle()
 }
