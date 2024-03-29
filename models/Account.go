@@ -6,4 +6,5 @@ type Account struct {
 	AccountNumber string
 	Balance       int64
 	UpdatedAt     int64
+	UserID        int
 }
