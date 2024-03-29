@@ -3,6 +3,7 @@ package repo
 import (
 	"database/sql"
 	"log"
+	"matthewhope/atm-system-go/sqlite"
 )
 
 const (
@@ -27,4 +28,8 @@ func NewSQLiteRepository() *SQLiteRepository {
 		log.Fatal(err.Error())
 	}
 	return ret
+}
+
+func (r *SQLiteRepository) UsersTableUp() error {
+	return sqlite.UsersTableUp(r.identityDb)
 }

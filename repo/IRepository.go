@@ -1,3 +1,5 @@
 package repo
 
-type IRepository interface{}
+type IRepository interface {
+	UsersTableUp() error
+}
