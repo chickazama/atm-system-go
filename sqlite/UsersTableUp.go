@@ -11,7 +11,7 @@ func UsersTableUp(db *sql.DB) error {
 		FirstName TEXT NOT NULL,
 		LastName TEXT NOT NULL,
 		UpdatedAt BIG INTEGER NOT NULL,
-		Username TEXT NOT NULL
+		Username TEXT UNIQUE NOT NULL
 	);`
 	stmt, err := db.Prepare(query)
 	if err != nil {
