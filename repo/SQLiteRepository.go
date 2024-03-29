@@ -33,9 +33,17 @@ func NewSQLiteRepository() *SQLiteRepository {
 	if err != nil {
 		log.Fatal(err.Error())
 	}
+	err = ret.AccountsTableUp()
+	if err != nil {
+		log.Fatal(err.Error())
+	}
 	return ret
 }
 
 func (r *SQLiteRepository) UsersTableUp() error {
 	return sqlite.UsersTableUp(r.identityDb)
+}
+
+func (r *SQLiteRepository) AccountsTableUp() error {
+	return sqlite.AccountsTableUp(r.businessDb)
 }
