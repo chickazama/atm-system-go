@@ -1,12 +1,12 @@
 package models
 
 type User struct {
-	UserID            int
-	CreatedAt         int64
-	EmailAddress      string
-	EncryptedPassword string
-	FirstName         string
-	LastName          string
-	UpdatedAt         int64
-	Username          string
+	UserID            int    `json:"userID"`
+	CreatedAt         int64  `json:"createdAt"`
+	EmailAddress      string `json:"emailAddress"`
+	EncryptedPassword string `json:"-"`
+	FirstName         string `json:"firstName"`
+	LastName          string `json:"lastName"`
+	UpdatedAt         int64  `json:"updatedAt"`
+	Username          string `json:"username"`
 }
