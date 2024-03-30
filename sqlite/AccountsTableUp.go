@@ -5,9 +5,9 @@ import "database/sql"
 func AccountsTableUp(db *sql.DB) error {
 	query := `CREATE TABLE IF NOT EXISTS "ACCOUNTS" (
 		AccountID INTEGER PRIMARY KEY AUTOINCREMENT,
-		CreatedAt BIG INTEGER NOT NULL,
 		AccountNumber TEXT UNIQUE NOT NULL,
 		Balance BIG INTEGER NOT NULL,
+		CreatedAt BIG INTEGER NOT NULL,
 		UpdatedAt BIG INTEGER NOT NULL,
 		UserID INTEGER NOT NULL
 	);`
