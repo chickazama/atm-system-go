@@ -6,7 +6,9 @@ import (
 	"log"
 	"matthewhope/atm-system-go/models"
 	"matthewhope/atm-system-go/repo"
+	"matthewhope/atm-system-go/transport"
 	"net/http"
+	"time"
 )
 
 type AccountsHandler struct {
@@ -37,12 +39,20 @@ func (h *AccountsHandler) post(w http.ResponseWriter, r *http.Request) {
 			http.Error(w, "internal server error", http.StatusInternalServerError)
 			return
 		}
-		var a models.Account
-		err = json.Unmarshal(buf, &a)
+		var dto transport.CreateAccountDTO
+		err = json.Unmarshal(buf, &dto)
 		if err != nil {
 			log.Println(err.Error())
 			http.Error(w, "internal server error", http.StatusInternalServerError)
 			return
+		}
+		ctime := time.Now().UTC().UnixMilli()
+		a := models.Account{
+			AccountNumber: dto.AccountNumber,
+			Balance:       dto.Balance,
+			CreatedAt:     ctime,
+			UpdatedAt:     ctime,
+			UserID:        1,
 		}
 		ret, err := h.rp.CreateAccount(a)
 		if err != nil {
