@@ -52,3 +52,7 @@ func (r *SQLiteRepository) AccountsTableUp() error {
 func (r *SQLiteRepository) CreateUser(u models.User) (models.User, error) {
 	return sqlite.CreateUser(r.identityDb, u)
 }
+
+func (r *SQLiteRepository) CreateAccount(a models.Account) (models.Account, error) {
+	return sqlite.CreateAccount(r.businessDb, a)
+}
