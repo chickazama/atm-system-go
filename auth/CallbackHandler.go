@@ -27,5 +27,14 @@ func (h *CallbackHandler) get(w http.ResponseWriter, r *http.Request) {
 	code := r.URL.Query().Get("code")
 	fmt.Println(code)
 	url := fmt.Sprintf("/?code=%s", code)
+	cookie := http.Cookie{
+		Name:     "Session",
+		Value:    "TestValue",
+		Path:     "/",
+		MaxAge:   300,
+		HttpOnly: true,
+		SameSite: http.SameSiteLaxMode,
+	}
+	http.SetCookie(w, &cookie)
 	http.Redirect(w, r, url, http.StatusSeeOther)
 }
