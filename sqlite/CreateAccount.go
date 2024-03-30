@@ -30,6 +30,6 @@ func CreateAccount(db *sql.DB, a models.Account) (models.Account, error) {
 	if err != nil {
 		return ret, err
 	}
-	ret.UserID = int(id)
+	ret.AccountID = int(id)
 	return ret, nil
 }
