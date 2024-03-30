@@ -4,11 +4,12 @@ import (
 	"encoding/json"
 	"fmt"
 	"log"
+	"matthewhope/atm-system-go/services/github"
 	"os"
 )
 
 var (
-	config OAuthConfig
+	config github.OAuthConfig
 )
 
 func init() {
