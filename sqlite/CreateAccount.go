@@ -9,13 +9,12 @@ import (
 func CreateAccount(db *sql.DB, a models.Account) (models.Account, error) {
 	ret := a
 	query := `INSERT INTO "ACCOUNTS" (
-		CreatedAt,
 		AccountNumber,
 		Balance,
 		CreatedAt,
 		UpdatedAt,
 		UserID
-	) VALUES (?, ?, ?, ?, ?, ?);`
+	) VALUES (?, ?, ?, ?, ?);`
 	stmt, err := db.Prepare(query)
 	if err != nil {
 		log.Println(err.Error())
