@@ -3,6 +3,7 @@ package main
 import (
 	"log"
 	"matthewhope/atm-system-go/api"
+	"matthewhope/atm-system-go/auth"
 	"matthewhope/atm-system-go/repo"
 	"matthewhope/atm-system-go/router"
 	"matthewhope/atm-system-go/ui"
@@ -33,4 +34,6 @@ func serveStaticFiles(mux *http.ServeMux) {
 func addAPIHandlers(r *router.Router, rp repo.IRepository) {
 	r.AddHandler(regexp.MustCompile(`^/api/users$`), api.NewUsersHandler(rp))
 	r.AddHandler(regexp.MustCompile(`^/api/accounts$`), api.NewAccountsHandler(rp))
+	r.AddHandler(regexp.MustCompile(`^/auth/github$`), auth.NewGithubHandler())
+	r.AddHandler(regexp.MustCompile(`^/auth/callback$`), auth.NewCallbackHandler())
 }
