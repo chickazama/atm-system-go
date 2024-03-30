@@ -6,7 +6,11 @@ import (
 	"log"
 	"matthewhope/atm-system-go/models"
 	"matthewhope/atm-system-go/repo"
+	"matthewhope/atm-system-go/transport"
 	"net/http"
+	"time"
+
+	"golang.org/x/crypto/bcrypt"
 )
 
 type UsersHandler struct {
@@ -37,12 +41,28 @@ func (h *UsersHandler) post(w http.ResponseWriter, r *http.Request) {
 			http.Error(w, "internal server error", http.StatusInternalServerError)
 			return
 		}
-		var u models.User
-		err = json.Unmarshal(buf, &u)
+		var dto transport.CreateUserDTO
+		err = json.Unmarshal(buf, &dto)
 		if err != nil {
 			log.Println(err.Error())
 			http.Error(w, "internal server error", http.StatusInternalServerError)
 			return
+		}
+		ctime := time.Now().UTC().UnixMilli()
+		encryptedPassword, err := bcrypt.GenerateFromPassword([]byte(dto.Password), bcrypt.DefaultCost)
+		if err != nil {
+			log.Println(err.Error())
+			http.Error(w, "internal server error", http.StatusInternalServerError)
+			return
+		}
+		u := models.User{
+			CreatedAt:         ctime,
+			EmailAddress:      dto.EmailAddress,
+			EncryptedPassword: string(encryptedPassword),
+			FirstName:         dto.FirstName,
+			LastName:          dto.LastName,
+			UpdatedAt:         ctime,
+			Username:          dto.Username,
 		}
 		ret, err := h.rp.CreateUser(u)
 		if err != nil {
