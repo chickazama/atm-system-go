@@ -1,6 +1,9 @@
 package auth
 
-import "net/http"
+import (
+	"fmt"
+	"net/http"
+)
 
 type CallbackHandler struct {
 }
@@ -22,5 +25,7 @@ func (h *CallbackHandler) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 
 func (h *CallbackHandler) get(w http.ResponseWriter, r *http.Request) {
 	code := r.URL.Query().Get("code")
-	w.Write([]byte(code))
+	fmt.Println(code)
+	url := fmt.Sprintf("/?code=%s", code)
+	http.Redirect(w, r, url, http.StatusSeeOther)
 }
