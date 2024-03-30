@@ -21,6 +21,12 @@ func NewIndexHandler() *IndexHandler {
 }
 
 func (h *IndexHandler) ServeHTTP(w http.ResponseWriter, r *http.Request) {
+	c, err := r.Cookie("Session")
+	if err != nil {
+		log.Println(err.Error())
+	} else {
+		log.Printf("%+v\n", c)
+	}
 	switch r.Method {
 	case http.MethodGet:
 		h.get(w, r)
