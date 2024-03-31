@@ -7,5 +7,5 @@ type IRepository interface {
 	AccountsTableUp() error
 	CreateUser(models.User) (models.User, error)
 	CreateAccount(models.Account) (models.Account, error)
-	// GetUsers() ([]models.User, error)
+	GetUsers() ([]models.User, error)
 }
