@@ -5,13 +5,13 @@ import (
 	"net/http"
 )
 
-type GithubHandler struct{}
+type GitHubRedirectHandler struct{}
 
-func NewGithubHandler() *GithubHandler {
-	return new(GithubHandler)
+func NewGitHubRedirectHandler() *GitHubRedirectHandler {
+	return new(GitHubRedirectHandler)
 }
 
-func (h *GithubHandler) ServeHTTP(w http.ResponseWriter, r *http.Request) {
+func (h *GitHubRedirectHandler) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 	switch r.Method {
 	case http.MethodGet:
 		h.get(w, r)
@@ -20,7 +20,7 @@ func (h *GithubHandler) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 	}
 }
 
-func (h *GithubHandler) get(w http.ResponseWriter, r *http.Request) {
+func (h *GitHubRedirectHandler) get(w http.ResponseWriter, r *http.Request) {
 	url := fmt.Sprintf("https://github.com/login/oauth/authorize?scope=read:user&client_id=%s&client_secret=%s", config.ClientID, config.ClientSecret)
 	http.Redirect(w, r, url, http.StatusSeeOther)
 }
