@@ -8,4 +8,5 @@ type IRepository interface {
 	CreateUser(models.User) (models.User, error)
 	CreateAccount(models.Account) (models.Account, error)
 	GetUsers() ([]models.User, error)
+	GetAccounts() ([]models.Account, error)
 }

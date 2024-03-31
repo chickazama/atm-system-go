@@ -60,3 +60,7 @@ func (r *SQLiteRepository) CreateAccount(a models.Account) (models.Account, erro
 func (r *SQLiteRepository) GetUsers() ([]models.User, error) {
 	return sqlite.GetUsers(r.identityDb)
 }
+
+func (r *SQLiteRepository) GetAccounts() ([]models.Account, error) {
+	return sqlite.GetAccounts(r.businessDb)
+}
