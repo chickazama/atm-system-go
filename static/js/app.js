@@ -1,7 +1,8 @@
+import Navbar from "./components/Navbar.js";
+
+customElements.define("navbar-component", Navbar);
+
 window.addEventListener("load", async () => {
     const main = document.getElementById("main");
-    const a = document.createElement("a");
-    a.href = "/auth/github";
-    a.innerText = "Sign in with GitHub";
-    main.appendChild(a);
+    main.appendChild(new Navbar());
 })
