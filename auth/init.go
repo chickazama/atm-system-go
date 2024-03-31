@@ -10,6 +10,7 @@ import (
 
 var (
 	config github.OAuthConfig
+	sm     *SessionManager
 )
 
 func init() {
@@ -22,4 +23,6 @@ func init() {
 		log.Fatal(err.Error())
 	}
 	fmt.Printf("%+v\n", config)
+	sm = NewSessionManager()
+	go sm.Add("example", "mcgee")
 }
