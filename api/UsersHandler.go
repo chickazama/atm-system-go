@@ -2,6 +2,7 @@ package api
 
 import (
 	"encoding/json"
+	"fmt"
 	"io"
 	"log"
 	"matthewhope/atm-system-go/models"
@@ -24,6 +25,7 @@ func NewUsersHandler(r repo.IRepository) *UsersHandler {
 }
 
 func (h *UsersHandler) ServeHTTP(w http.ResponseWriter, r *http.Request) {
+	fmt.Printf("Users Handler: Method: %s\n", r.Method)
 	switch r.Method {
 	// CREATE
 	case http.MethodPost:
