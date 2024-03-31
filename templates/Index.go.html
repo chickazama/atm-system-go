@@ -8,6 +8,10 @@
         <div class="row mb-2">
             <h1>Welcome to your application!</h1>
         </div>
+        <form enctype="multipart/form-data" action="/api/file" method="post">
+            <input type="file" name="example" />
+            <button class="btn" type="submit">Upload File</button>
+        </form>
     </div>
 </main>
 {{template "_LayoutEnd" .}}
