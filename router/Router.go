@@ -1,6 +1,7 @@
 package router
 
 import (
+	"fmt"
 	"net/http"
 	"regexp"
 )
@@ -18,6 +19,7 @@ func (rt *Router) AddHandler(exp *regexp.Regexp, h http.Handler) {
 }
 
 func (rt *Router) ServeHTTP(w http.ResponseWriter, r *http.Request) {
+	fmt.Printf("Router: Request Received: %s\n", r.URL.Path)
 	for exp, h := range rt.Handlers {
 		if exp.MatchString(r.URL.Path) {
 			h.ServeHTTP(w, r)
