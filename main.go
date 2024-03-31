@@ -34,6 +34,6 @@ func serveStaticFiles(mux *http.ServeMux) {
 func addAPIHandlers(r *router.Router, rp repo.IRepository) {
 	r.AddHandler(regexp.MustCompile(`^/api/users$`), api.NewUsersHandler(rp))
 	r.AddHandler(regexp.MustCompile(`^/api/accounts$`), api.NewAccountsHandler(rp))
-	r.AddHandler(regexp.MustCompile(`^/auth/github$`), auth.NewGithubHandler())
-	r.AddHandler(regexp.MustCompile(`^/auth/callback$`), auth.NewCallbackHandler())
+	r.AddHandler(regexp.MustCompile(`^/auth/github$`), auth.NewGitHubRedirectHandler())
+	r.AddHandler(regexp.MustCompile(`^/auth/callback$`), auth.NewGitHubCallbackHandler())
 }
