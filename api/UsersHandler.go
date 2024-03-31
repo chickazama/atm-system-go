@@ -28,9 +28,15 @@ func (h *UsersHandler) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 	// CREATE
 	case http.MethodPost:
 		h.post(w, r)
+	// READ
+	case http.MethodGet:
+		h.get(w, r)
+	default:
+		http.Error(w, "method not allowed", http.StatusMethodNotAllowed)
 	}
 }
 
+// CREATE (HTTP POST)
 func (h *UsersHandler) post(w http.ResponseWriter, r *http.Request) {
 	contentType := r.Header.Get("Content-Type")
 	switch contentType {
@@ -79,5 +85,24 @@ func (h *UsersHandler) post(w http.ResponseWriter, r *http.Request) {
 		}
 	default:
 		http.Error(w, "unsupported media type", http.StatusUnsupportedMediaType)
+	}
+}
+
+func (h *UsersHandler) get(w http.ResponseWriter, r *http.Request) {
+	accept := r.Header.Get("Accept")
+	switch accept {
+	case "application/json":
+		ret, err := h.rp.GetUsers()
+		if err != nil {
+			log.Println(err.Error())
+			http.Error(w, "internal server error", http.StatusInternalServerError)
+			return
+		}
+		err = json.NewEncoder(w).Encode(&ret)
+		if err != nil {
+			log.Println(err.Error())
+			http.Error(w, "internal server error", http.StatusInternalServerError)
+			return
+		}
 	}
 }
