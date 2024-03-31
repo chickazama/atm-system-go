@@ -1,6 +1,7 @@
 package auth
 
 import (
+	"log"
 	"matthewhope/atm-system-go/services/github"
 	"net/http"
 )
@@ -25,11 +26,16 @@ func (h *GitHubCallbackHandler) ServeHTTP(w http.ResponseWriter, r *http.Request
 
 func (h *GitHubCallbackHandler) get(w http.ResponseWriter, r *http.Request) {
 	code := r.URL.Query().Get("code")
-	github.GetUserAccessToken(code, config)
+	value, err := github.GetUserAccessToken(code, config)
+	if err != nil {
+		log.Println(err.Error())
+		http.Error(w, "unable to retrieve code", http.StatusInternalServerError)
+		return
+	}
 	url := "/"
 	cookie := http.Cookie{
 		Name:     "Session",
-		Value:    "TestValue",
+		Value:    value,
 		Path:     "/",
 		MaxAge:   300,
 		HttpOnly: true,
