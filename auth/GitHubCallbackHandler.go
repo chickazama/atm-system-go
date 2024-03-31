@@ -5,14 +5,14 @@ import (
 	"net/http"
 )
 
-type CallbackHandler struct {
+type GitHubCallbackHandler struct {
 }
 
-func NewCallbackHandler() *CallbackHandler {
-	return new(CallbackHandler)
+func NewGitHubCallbackHandler() *GitHubCallbackHandler {
+	return new(GitHubCallbackHandler)
 }
 
-func (h *CallbackHandler) ServeHTTP(w http.ResponseWriter, r *http.Request) {
+func (h *GitHubCallbackHandler) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 	switch r.Method {
 	case http.MethodGet:
 		h.get(w, r)
@@ -23,7 +23,7 @@ func (h *CallbackHandler) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 	}
 }
 
-func (h *CallbackHandler) get(w http.ResponseWriter, r *http.Request) {
+func (h *GitHubCallbackHandler) get(w http.ResponseWriter, r *http.Request) {
 	code := r.URL.Query().Get("code")
 	github.GetUserAccessToken(code, config)
 	url := "/"
